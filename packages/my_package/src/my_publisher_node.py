@@ -5,19 +5,28 @@ import rospy
 from duckietown.dtros import DTROS, NodeType
 from std_msgs.msg import String
 
+#found this by: running gui tools -> cmd 'rostopic list' -> find topic you want -> 'rostopic info [topic name]' 
+#then import the files wanted
+from sensor_msgs.msg import CompressedImage
+
 class MyPublisherNode(DTROS):
 
     def __init__(self, node_name):
         # initialize the DTROS parent class
         super(MyPublisherNode, self).__init__(node_name=node_name, node_type=NodeType.GENERIC)
-        # construct publisher
+        
+        # construct publisher string and publisher
+        publisherString = "/" +  os.environ['VEHICLE_NAME'] + "/camera_node/image/compressed"
         self.pub = rospy.Publisher('chatter', String, queue_size=10)
 
+    
+    
+    
     def run(self):
         #get the duckie bot name
         duckiebotname = os.environ['VEHICLE_NAME']
         # publish message every 1 second
-        rate = rospy.Rate(1) # 1Hz
+        rate = rospy.Rate(10) # 1Hz
         while not rospy.is_shutdown():
             message = "Hello from " + duckiebotname
             rospy.loginfo("Publishing message: '%s'" % message)
