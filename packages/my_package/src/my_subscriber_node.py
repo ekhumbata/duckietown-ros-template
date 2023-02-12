@@ -12,7 +12,6 @@ from std_msgs.msg import String
 #from sensor_msgs.msg import CameraInfo
 from sensor_msgs.msg import CompressedImage
 
-
 class MySubscriberNode(DTROS):
 
     def __init__(self, node_name):
@@ -27,7 +26,6 @@ class MySubscriberNode(DTROS):
         self.pub = rospy.Publisher("/image_raw/compressed", CompressedImage)
         #print("got here!")
         
-
     def callback(self, data):
         rate = rospy.Rate(30) # 30Hz
         #print("in the callback")
@@ -42,8 +40,6 @@ class MySubscriberNode(DTROS):
         
         self.pub.publish(msg)
         rate.sleep()
-
-
 
 if __name__ == '__main__':
     # create the node
