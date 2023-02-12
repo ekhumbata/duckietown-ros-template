@@ -19,9 +19,6 @@ class MyPublisherNode(DTROS):
         publisherString = "/" +  os.environ['VEHICLE_NAME'] + "/camera_node/image/compressed"
         self.pub = rospy.Publisher('chatter', String, queue_size=10)
 
-    
-    
-    
     def run(self):
         #get the duckie bot name
         duckiebotname = os.environ['VEHICLE_NAME']
